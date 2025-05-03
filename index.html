@@ -4,78 +4,512 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensagens Bíblicas</title>
-    <link rel="shortcut icon" href="112282.png" type="image/x-icon">
+    <title>Mensagens Bíblicas - Inspiração Diária</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/554623e3bc.js" crossorigin="anonymous"></script>
     <style>
+        :root {
+            --primary-blue: #337fff;
+            --primary-gold: #ffbd33;
+            --primary-white: #ffffff;
+            --accent-green: #33ff57;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(45deg, #ff5733, #ffbd33, #33ff57, #337fff);
-            color: white;
-            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--primary-white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-gold);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: background-color 0.5s ease;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-gold));
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-white);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-gold);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .how-it-works {
+            background: var(--primary-white);
+            color: #333;
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .message-generator {
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-green));
         }
 
         #message-box {
             background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
+            padding: 2rem;
             border-radius: 10px;
-            width: 60%;
-            font-size: 24px;
+            width: 90%;
+            max-width: 800px;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
             border: none;
-            border-radius: 5px;
-            background: #ffbd33;
+            border-radius: 50px;
+            background: var(--primary-gold);
+            color: #000;
             cursor: pointer;
-            transition: 0.3s;
+            transition: transform 0.3s;
+            font-weight: 600;
         }
 
         button:hover {
-            background: #ff5733;
+            transform: scale(1.05);
         }
 
         .copy-btn {
             cursor: pointer;
-            font-size: 24px;
+            font-size: 1.5rem;
             transition: transform 0.2s;
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 5rem;
+            right: 2rem;
             background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
+            padding: 1rem;
             border-radius: 50%;
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--primary-white);
         }
 
         .copy-btn:hover {
             transform: scale(1.2);
         }
+
+        .benefits {
+            background: var(--primary-white);
+            color: #333;
+        }
+
+        .benefits h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .benefits-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .benefits-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .benefits-list i {
+            color: var(--primary-blue);
+            margin-right: 1rem;
+        }
+
+        .ad-space {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+
+        .ad-banner {
+            background-color: beige;
+            padding: 2rem;
+            border-radius: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        #testimonials {
+            background: var(--primary-white);
+            color: #333;
+        }
+
+        #testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .testimonial-card p {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card cite {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-gold));
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-white);
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-white);
+        }
+
+        .footer {
+            background: #333;
+            color: var(--primary-white);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--primary-white);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .social-links {
+            margin-bottom: 2rem;
+        }
+
+        .social-icon {
+            color: var(--primary-white);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--primary-gold);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            #message-box {
+                font-size: 1.2rem;
+                padding: 1.5rem;
+            }
+
+            .benefits h2,
+            .testimonials h2,
+            .final-cta h2 {
+                font-size: 2rem;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 1rem 0;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <header class="header">
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#como-funciona">Como Funciona</a></li>
+                <li><a href="#gerador">Gerador de Mensagens</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#testimonials">Depoimentos</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div id="message-box">
-        <i class="fa-solid fa-book-bible"></i>
-        Clique no botão a baixo para uma mensagem bíblica
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Receba Inspiração Divina Todos os Dias!</h1>
+            <p>Nosso aplicativo envia versículos bíblicos para fortalecer sua fé, totalmente grátis e quantas vezes você
+                quiser.</p>
+            <a href="#gerador" class="cta-button">Comece Agora - É 100% Gratuito</a>
+        </div>
+    </section>
+
+    <div class="ad-space">
+        <div class="ad-banner">Espaço reservado para novidades e ofertas especiais!</div>
     </div>
-    <span class="copy-btn" onclick="copyMessage()" title="Copiar mensagem">📋</span>
-    <button onclick="nextMessage()">Próxima Mensagem</button>
-   
+
+    <section id="como-funciona" class="how-it-works">
+        <h2>Como Funciona?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-clock"></i>
+                <h3>Escolha seu ritmo</h3>
+                <p>Configure quantas mensagens deseja receber por dia</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-book-bible"></i>
+                <h3>Receba versículos poderosos</h3>
+                <p>Mensagens selecionadas para cada momento</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-share-alt"></i>
+                <h3>Compartilhe fé</h3>
+                <p>Compartilhe facilmente versículos com amigos e familiares</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="ad-space">
+        <div class="ad-banner">Espaço reservado para novidades e ofertas especiais!</div>
+    </div>
+
+    <section id="gerador" class="message-generator">
+        <div id="message-box">
+            <i class="fa-solid fa-book-bible"></i>
+            Clique no botão abaixo para uma mensagem bíblica
+        </div>
+        <span class="copy-btn" onclick="copyMessage()" title="Copiar mensagem">📋</span>
+        <button onclick="nextMessage()">Próxima Mensagem</button>
+    </section>
+
+    <div class="ad-space">
+        <div class="ad-banner">Espaço reservado para novidades e ofertas especiais!</div>
+    </div>
+
+    <section id="beneficios" class="benefits">
+        <h2>Por que usar diariamente?</h2>
+        <div class="benefits-content">
+            <p class="benefits-text">A Palavra de Deus transforma vidas. Um pequeno versículo diário pode trazer paz,
+                força e esperança nos momentos que mais precisamos.</p>
+            <ul class="benefits-list">
+                <li><i class="fas fa-check"></i> Fortaleça sua fé todos os dias</li>
+                <li><i class="fas fa-check"></i> Encontre palavras de conforto e motivação</li>
+                <li><i class="fas fa-check"></i> Compartilhe amor e esperança</li>
+                <li><i class="fas fa-check"></i> Gratuito para sempre</li>
+                <li><i class="fas fa-check"></i> Sem limite de versículos</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="ad-space">
+        <div class="ad-banner">Espaço reservado para novidades e ofertas especiais!</div>
+    </div>
+
+    <section id="testimonials">
+        <h2>Depoimentos</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Desde que comecei a usar o app, meus dias têm mais propósito!"</p>
+                <cite>- Maria Clara</cite>
+            </div>
+            <div class="testimonial-card">
+                <p>"Amo receber uma palavra de fé sempre que preciso. Recomendo a todos!"</p>
+                <cite>- João Pedro</cite>
+            </div>
+            <div class="testimonial-card">
+                <p>"Este app mudou minha forma de começar o dia. Gratidão!"</p>
+                <cite>- Ana Beatriz</cite>
+            </div>
+        </div>
+    </section>
+
+    <div class="ad-space">
+        <div class="ad-banner">Espaço reservado para novidades e ofertas especiais!</div>
+    </div>
+
+    <section class="final-cta">
+        <h2>Transforme seus dias com a Palavra de Deus</h2>
+        <p>Comece sua jornada espiritual agora!</p>
+        <a href="#gerador" class="cta-button">Gerar Próxima Mensagem</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Contato</a>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p class="copyright">© 2025 Mensagens Bíblicas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
     <script>
         const messages = [
             "Pela manhã ouvirá a minha voz, ó Senhor; pela manhã me apresentarei a ti, e vigiarei. - Salmos 5:3",
@@ -102,11 +536,11 @@
 
             "O que presto se irá fará doidices, e o homem de más imaginações será aborrecido. - Provérbios 14:17",
 
-            "Todo o caminho do homem é reto aos seus olhos, mas o Senhor sanda os corações. - Provérbios 21:2",
+            "Todo o caminho do homem é reto aos seus olhos, mas o Senhor sonda os corações. - Provérbios 21:2",
 
             "Designou a lua para as estações; o sol conhece o seu ocaso. - Salmos 104:19",
 
-            "Os olhos do senhor conservam o que tem conhecimento, mas as palavras do iníquio ele transformará. Provérbios 22:12",
+            "Os olhos do senhor conservam o que tem conhecimento, mas as palavras do iníquio ele transformará. - Provérbios 22:12",
 
             "Bem sei eu que tudo podes, e nenhum dos teus pensamentos pode ser impedido. - Jó 42:2",
 
@@ -168,175 +602,175 @@
 
             "O choro pode durar uma noite, mas a alegria vem pela manhã. - Salmos 30: 5",
 
-            "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento. – Provérbios 3: 5",
+            "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento. - Provérbios 3: 5",
 
-            "Buscai primeiro o Reino de Deus, e a sua justiça, e todas essas coisas vos serão acrescentadas. – Mateus 6: 33",
+            "Buscai primeiro o Reino de Deus, e a sua justiça, e todas essas coisas vos serão acrescentadas. - Mateus 6: 33",
 
-            "Se Deus é por nós, quem será contra nós? – Romanos 8: 31",
+            "Se Deus é por nós, quem será contra nós? - Romanos 8: 31",
 
-            "Bem-aventurados os que têm fome e sede de justiça, porque eles serão fartos. – Mateus 5: 6",
+            "Bem-aventurados os que têm fome e sede de justiça, porque eles serão fartos. - Mateus 5: 6",
 
-            "Clama a mim, e responder-te-ei, e anunciar-te-ei coisas grandes e firmes que não sabes. – Jeremias 33: 3",
+            "Clama a mim, e responder-te-ei, e anunciar-te-ei coisas grandes e firmes que não sabes. - Jeremias 33: 3",
 
             "O Senhor é a minha luz e a minha salvação; a quem temerei? - Salmos 27: 1",
 
-            "Alegrai-vos sempre no Senhor; outra vez digo: alegrai-vos. -Filipenses 4: 4",
+            "Alegrai-vos sempre no Senhor; outra vez digo: alegrai-vos. - Filipenses 4: 4",
 
             "Lâmpada para os meus pés é tua palavra, e luz para o meu caminho. - Salmos 119: 105",
 
-            "Porque andamos por fé, e não por vista. – 2 Coríntios 5: 7",
+            "Porque andamos por fé, e não por vista. - 2 Coríntios 5: 7",
 
-            "O Senhor é bom, é fortaleza no dia da angústia. – Naum 1: 7",
+            "O Senhor é bom, é fortaleza no dia da angústia. - Naum 1: 7",
 
-            "E tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens. – Colossenses 3: 23",
+            "E tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens. - Colossenses 3: 23",
 
-            "Mas os que esperam no Senhor renovarão as forças. – Isaías 40: 31",
+            "Mas os que esperam no Senhor renovarão as forças. - Isaías 40: 31",
 
-            "A paz de Deus, que excede todo o entendimento, guardará os vossos corações. – Filipenses 4: 7",
+            "A paz de Deus, que excede todo o entendimento, guardará os vossos corações. - Filipenses 4: 7",
 
-            "Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus. – Isaías 41: 10",
+            "Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus. - Isaías 41: 10",
 
-            "Pedi, e dar-se-vos-á; buscai, e encontrareis. – Mateus 7: 7",
+            "Pedi, e dar-se-vos-á; buscai, e encontrareis. - Mateus 7: 7",
 
-            "Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia. – Salmos 46: 1",
+            "Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia. - Salmos 46: 1",
 
-            "Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós.– 1 Pedro 5: 7",
+            "Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós. - 1 Pedro 5: 7",
 
-            "Este é o dia que fez o Senhor; regozijemo-nos, e alegremo-nos nele. – Salmos 118: 24",
+            "Este é o dia que fez o Senhor; regozijemo-nos, e alegremo-nos nele. - Salmos 118: 24",
 
-            "O coração alegre aformoseia o rosto, mas pela dor do coração o espírito se abate.– Provérbios 15: 13",
+            "O coração alegre aformoseia o rosto, mas pela dor do coração o espírito se abate. - Provérbios 15: 13",
 
-            "Eu sou o caminho, a verdade e a vida; ninguém vem ao Pai, senão por mim. – João 14: 6",
+            "Eu sou o caminho, a verdade e a vida; ninguém vem ao Pai, senão por mim. - João 14: 6",
 
-            "Deem graças em todas as circunstâncias, pois esta é a vontade de Deus. – 1 Tessalonicenses 5: 18",
+            "Deem graças em todas as circunstâncias, pois esta é a vontade de Deus. - 1 Tessalonicenses 5: 18",
 
-            "O Senhor lutará por vocês; tão somente acalmem-se. – Êxodo 14: 14",
+            "O Senhor lutará por vocês; tão somente acalmem-se. - Êxodo 14: 14",
 
-            "O Senhor é misericordioso e compassivo, tardio em irar-se e grande em benignidade. – Salmos 145: 8",
+            "O Senhor é misericordioso e compassivo, tardio em irar-se e grande em benignidade. - Salmos 145: 8",
 
-            "O Senhor dos Exércitos está conosco; o Deus de Jacó é o nosso refúgio. – Salmos 46: 7",
+            "O Senhor dos Exércitos está conosco; o Deus de Jacó é o nosso refúgio. - Salmos 46: 7",
 
-            "Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum. – Salmos 23: 4",
+            "Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum. - Salmos 23: 4",
 
-            "Eu te exaltarei, ó Deus meu, Rei; bendirei o teu nome para todo o sempre. – Salmos 145:1",
+            "Eu te exaltarei, ó Deus meu, Rei; bendirei o teu nome para todo o sempre. - Salmos 145:1",
 
             "O temor do Senhor é o princípio da sabedoria. - Provérbios 9:10",
 
-            "A resposta branda desvia o furor, mas a palavra dura suscita a ira. – Provérbios 15:1",
+            "A resposta branda desvia o furor, mas a palavra dura suscita a ira. - Provérbios 15:1",
 
-            "O Senhor é a minha força e o meu cântico; ele me foi por salvação. – Salmos 118:14",
+            "O Senhor é a minha força e o meu cântico; ele me foi por salvação. - Salmos 118:14",
 
-            "Aquele que habita no esconderijo do Altíssimo, à sombra do Onipotente descansará. – Salmos 91:1",
+            "Aquele que habita no esconderijo do Altíssimo, à sombra do Onipotente descansará. - Salmos 91:1",
 
-            "Não se turbe o vosso coração; credes em Deus, crede também em mim. – João 14:1",
+            "Não se turbe o vosso coração; credes em Deus, crede também em mim. - João 14:1",
 
-            "O Senhor é o meu ajudador, e não temerei o que me possa fazer o homem. – Hebreus 13:6",
+            "O Senhor é o meu ajudador, e não temerei o que me possa fazer o homem. - Hebreus 13:6",
 
-            "Os que confiam no Senhor são como o monte de Sião, que não se abala. – Salmos 125:1",
+            "Os que confiam no Senhor são como o monte de Sião, que não se abala. - Salmos 125:1",
 
-            "Guardei a tua palavra no meu coração, para eu não pecar contra ti. – Salmos 119:11",
+            "Guardei a tua palavra no meu coração, para eu não pecar contra ti. - Salmos 119:11",
 
-            "Bem-aventurado o homem que confia no Senhor, e cuja esperança é o Senhor. – Jeremias 17:7",
+            "Bem-aventurado o homem que confia no Senhor, e cuja esperança é o Senhor. - Jeremias 17:7",
 
-            "Sujeitai-vos, pois, a Deus; resisti ao diabo, e ele fugirá de vós. – Tiago 4:7",
+            "Sujeitai-vos, pois, a Deus; resisti ao diabo, e ele fugirá de vós. - Tiago 4:7",
 
-            "Porque para Deus nada é impossível. – Lucas 1:37",
+            "Porque para Deus nada é impossível. - Lucas 1:37",
 
-            "Aquele que começou a boa obra em vós há de completá-la até o dia de Cristo Jesus. – Filipenses 1:6",
+            "Aquele que começou a boa obra em vós há de completá-la até o dia de Cristo Jesus. - Filipenses 1:6",
 
-            "O Senhor firma os passos do homem bom, e no seu caminho se deleita. – Salmos 37:23",
+            "O Senhor firma os passos do homem bom, e no seu caminho se deleita. - Salmos 37:23",
 
-            "O Senhor é tardio em irar-se, mas grande em poder. – Naum 1:3",
+            "O Senhor é tardio em irar-se, mas grande em poder. - Naum 1:3",
 
-            "O Senhor é refúgio para os oprimidos, uma torre segura na hora da adversidade. – Salmos 9:9",
+            "O Senhor é refúgio para os oprimidos, uma torre segura na hora da adversidade. - Salmos 9:9",
 
-            "Porque vivemos por fé, e não pelo que vemos. – 2 Coríntios 5:7",
+            "Porque vivemos por fé, e não pelo que vemos. - 2 Coríntios 5:7",
 
-            "O Senhor te guardará de todo mal; ele guardará a tua alma. – Salmos 121:7",
+            "O Senhor te guardará de todo mal; ele guardará a tua alma. - Salmos 121:7",
 
-            "Deus é amor; e quem permanece no amor permanece em Deus. – 1 João 4:16",
+            "Deus é amor; e quem permanece no amor permanece em Deus. - 1 João 4:16",
 
-            "Regozijai-vos na esperança, sede pacientes na tribulação, perseverai na oração. – Romanos 12:12",
+            "Regozijai-vos na esperança, sede pacientes na tribulação, perseverai na oração. - Romanos 12:12",
 
-            "O Senhor é a força do seu povo; ele é a salvação dos seus ungidos. – Salmos 28:8",
+            "O Senhor é a força do seu povo; ele é a salvação dos seus ungidos. - Salmos 28:8",
 
-            "Ele dá força ao cansado, e multiplica as forças ao que não tem nenhum vigor. – Isaías 40:29",
+            "Ele dá força ao cansado, e multiplica as forças ao que não tem nenhum vigor. - Isaías 40:29",
 
-            "A fé é o firme fundamento das coisas que se esperam, e a prova das coisas que não se veem. – Hebreus 11:1",
+            "A fé é o firme fundamento das coisas que se esperam, e a prova das coisas que não se veem. - Hebreus 11:1",
 
-            "Ame o Senhor, seu Deus, de todo o seu coração, de toda a sua alma e de todo o seu entendimento. – Mateus 22:37",
+            "Ame o Senhor, seu Deus, de todo o seu coração, de toda a sua alma e de todo o seu entendimento. - Mateus 22:37",
 
-            "Bem-aventurados os pacificadores, porque serão chamados filhos de Deus. – Mateus 5:9",
+            "Bem-aventurados os pacificadores, porque serão chamados filhos de Deus. - Mateus 5:9",
 
-            "O Senhor é a minha força e o meu cântico; ele se tornou a minha salvação. – Êxodo 15:2",
+            "O Senhor é a minha força e o meu cântico; ele se tornou a minha salvação. - Êxodo 15:2",
 
-            "Esforçai-vos, e ele fortalecerá o vosso coração, vós todos que esperais no Senhor. – Salmos 31:24",
+            "Esforçai-vos, e ele fortalecerá o vosso coração, vós todos que esperais no Senhor. - Salmos 31:24",
 
-            "O Senhor abençoará o seu povo com paz. – Salmos 29:11",
+            "O Senhor abençoará o seu povo com paz. - Salmos 29:11",
 
-            "Gloriai-vos no seu santo nome; alegre-se o coração dos que buscam ao Senhor. – 1 Crônicas 16:10",
+            "Gloriai-vos no seu santo nome; alegre-se o coração dos que buscam ao Senhor. - 1 Crônicas 16:10",
 
-            "Deus é o juiz; a um abate, e a outro exalta. – Salmos 75:7",
+            "Deus é o juiz; a um abate, e a outro exalta. - Salmos 75:7",
 
-            "Porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna. – Romanos 6:23",
+            "Porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna. - Romanos 6:23",
 
-            "Deleite-se no Senhor, e ele atenderá aos desejos do seu coração. – Salmos 37:4",
+            "Deleite-se no Senhor, e ele atenderá aos desejos do seu coração. - Salmos 37:4",
 
-            "Porque sou eu que conheço os planos que tenho para vocês, diz o Senhor. – Jeremias 29:11",
+            "Porque sou eu que conheço os planos que tenho para vocês, diz o Senhor. - Jeremias 29:11",
 
-            "Deus é espírito, e é necessário que os seus adoradores o adorem em espírito e em verdade. – João 4:24",
+            "Deus é espírito, e é necessário que os seus adoradores o adorem em espírito e em verdade. - João 4:24",
 
-            "Bendirei ao Senhor em todo o tempo; o seu louvor estará continuamente na minha boca. – Salmos 34:1",
+            "Bendirei ao Senhor em todo o tempo; o seu louvor estará continuamente na minha boca. - Salmos 34:1",
 
-            "Bem-aventurados os humildes de espírito, porque deles é o Reino dos Céus. – Mateus 5:3",
+            "Bem-aventurados os humildes de espírito, porque deles é o Reino dos Céus. - Mateus 5:3",
 
-            "Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco. – 1 Tessalonicenses 5:18",
+            "Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco. - 1 Tessalonicenses 5:18",
 
-            "Se o meu povo, que se chama pelo meu nome, se humilhar e orar, eu sararei a sua terra. – 2 Crônicas 7:14",
+            "Se o meu povo, que se chama pelo meu nome, se humilhar e orar, eu sararei a sua terra. - 2 Crônicas 7:14",
 
-            "O Senhor dá força ao seu povo; o Senhor abençoa o seu povo com paz. – Salmos 29:11",
+            "O Senhor dá força ao seu povo; o Senhor abençoa o seu povo com paz. - Salmos 29:11",
 
-            "Sede fortes e corajosos; não temais nem vos assusteis. – Deuteronômio 31:6",
+            "Sede fortes e corajosos; não temais nem vos assusteis. - Deuteronômio 31:6",
 
-            "O anjo do Senhor acampa-se ao redor dos que o temem e os livra. – Salmos 34:7",
+            "O anjo do Senhor acampa-se ao redor dos que o temem e os livra. - Salmos 34:7",
 
-            "O Senhor sustém a todos os que estão a cair, e levanta a todos os abatidos. – Salmos 145:14",
+            "O Senhor sustém a todos os que estão a cair, e levanta a todos os abatidos. - Salmos 145:14",
 
-            "O Senhor está perto de todos os que o invocam, de todos os que o invocam em verdade. – Salmos 145:18",
+            "O Senhor está perto de todos os que o invocam, de todos os que o invocam em verdade. - Salmos 145:18",
 
-            "Aquele que tem sede, venha; e quem quiser, receba de graça a água da vida. – Apocalipse 22:17",
+            "Aquele que tem sede, venha; e quem quiser, receba de graça a água da vida. - Apocalipse 22:17",
 
-            "O meu Deus, segundo as suas riquezas, suprirá todas as vossas necessidades. – Filipenses 4:19",
+            "O meu Deus, segundo as suas riquezas, suprirá todas as vossas necessidades. - Filipenses 4:19",
 
-            "A tua palavra é a verdade desde o princípio, e cada um dos teus juízos dura para sempre. – Salmos 119:160",
+            "A tua palavra é a verdade desde o princípio, e cada um dos teus juízos dura para sempre. - Salmos 119:160",
 
-            "Grandes coisas fez o Senhor por nós, por isso estamos alegres. – Salmos 126:3",
+            "Grandes coisas fez o Senhor por nós, por isso estamos alegres. - Salmos 126:3",
 
-            "Bendito seja o nome do Senhor, desde agora e para sempre. – Salmos 113:2",
+            "Bendito seja o nome do Senhor, desde agora e para sempre. - Salmos 113:2",
 
-            "O Senhor firma os passos do homem bom, e no seu caminho se deleita. – Salmos 37:23",
+            "O Senhor firma os passos do homem bom, e no seu caminho se deleita. - Salmos 37:23",
 
-            "A sabedoria é a coisa principal; adquire pois a sabedoria. – Provérbios 4:7",
+            "A sabedoria é a coisa principal; adquire pois a sabedoria. - Provérbios 4:7",
 
-            "Bem-aventurados os limpos de coração, porque eles verão a Deus. – Mateus 5:8",
+            "Bem-aventurados os limpos de coração, porque eles verão a Deus. - Mateus 5:8",
 
-            "Porque contigo está o manancial da vida; na tua luz veremos a luz. – Salmos 36:9",
+            "Porque contigo está o manancial da vida; na tua luz veremos a luz. - Salmos 36:9",
 
-            "A tua bondade e misericórdia me seguirão todos os dias da minha vida. – Salmos 23:6",
+            "A tua bondade e misericórdia me seguirão todos os dias da minha vida. - Salmos 23:6",
 
-            "O Senhor guarda a todos os que o amam. – Salmos 145:20",
+            "O Senhor guarda a todos os que o amam. - Salmos 145:20",
 
-            "Sede praticantes da palavra, e não somente ouvintes. – Tiago 1:22",
+            "Sede praticantes da palavra, e não somente ouvintes. - Tiago 1:22",
 
-            "Louvai ao Senhor, porque ele é bom, porque a sua benignidade dura para sempre. – Salmos 107:1",
+            "Louvai ao Senhor, porque ele é bom, porque a sua benignidade dura para sempre. - Salmos 107:1",
 
-            "A oração feita por um justo pode muito em seus efeitos. – Tiago 5:16",
+            "A oração feita por um justo pode muito em seus efeitos. - Tiago 5:16",
 
-            "O Senhor é justo em todos os seus caminhos, e santo em todas as suas obras. – Salmos 145:17",
+            "O Senhor é justo em todos os seus caminhos, e santo em todas as suas obras. - Salmos 145:17",
 
-            "Porque andamos por fé, e não por vista. – 2 Coríntios 5:7",
+            "Porque andamos por fé, e não por vista. - 2 Coríntios 5:7",
 
-            "Alegrem-se na esperança, sejam pacientes na tribulação. – Romanos 12:12",
+            "Alegrem-se na esperança, sejam pacientes na tribulação. - Romanos 12:12",
 
             "O Senhor é a minha luz e a minha salvação; a quem temerei? - Salmos 27:1",
 
@@ -400,205 +834,205 @@
 
             "A oração feita por um justo pode muito em seus efeitos. - Tiago 5:16",
 
-            "O Senhor reina; tremam os povos. Ele está entronizado sobre os querubins; comova-se a terra. – Salmos 99:1",
+            "O Senhor reina; tremam os povos. Ele está entronizado sobre os querubins; comova-se a terra. - Salmos 99:1",
 
-            "Sabei que o Senhor é Deus; foi ele quem nos fez, e dele somos. – Salmos 100:3",
+            "Sabei que o Senhor é Deus; foi ele quem nos fez, e dele somos. - Salmos 100:3",
 
-            "Vinde, adoremos e prostremo-nos; ajoelhemos diante do Senhor que nos criou. – Salmos 95:6",
+            "Vinde, adoremos e prostremo-nos; ajoelhemos diante do Senhor que nos criou. - Salmos 95:6",
 
-            "Pois o Senhor conhece o caminho dos justos, mas o caminho dos ímpios perecerá. – Salmos 1:6",
+            "Pois o Senhor conhece o caminho dos justos, mas o caminho dos ímpios perecerá. - Salmos 1:6",
 
-            "Melhor é o pouco com o temor do Senhor do que um grande tesouro onde há inquietação. – Provérbios 15:16",
+            "Melhor é o pouco com o temor do Senhor do que um grande tesouro onde há inquietação. - Provérbios 15:16",
 
-            "O Senhor não retarda a sua promessa, ainda que alguns a tenham por tardia. – 2 Pedro 3:9",
+            "O Senhor não retarda a sua promessa, ainda que alguns a tenham por tardia. - 2 Pedro 3:9",
 
-            "Crê no Senhor Jesus Cristo e serás salvo, tu e a tua casa. – Atos 16:31",
+            "Crê no Senhor Jesus Cristo e serás salvo, tu e a tua casa. - Atos 16:31",
 
-            "Como um pai se compadece de seus filhos, assim o Senhor se compadece dos que o temem. – Salmos 103:13",
+            "Como um pai se compadece de seus filhos, assim o Senhor se compadece dos que o temem. - Salmos 103:13",
 
-            "Levanta-te, resplandece, porque vem a tua luz, e a glória do Senhor vai nascendo sobre ti. – Isaías 60:1",
+            "Levanta-te, resplandece, porque vem a tua luz, e a glória do Senhor vai nascendo sobre ti. - Isaías 60:1",
 
-            "Mas o justo viverá da fé. – Hebreus 10:38",
+            "Mas o justo viverá da fé. - Hebreus 10:38",
 
-            "O Senhor te abrirá o seu bom tesouro, o céu, para dar chuva à tua terra no tempo certo. – Deuteronômio 28:12",
+            "O Senhor te abrirá o seu bom tesouro, o céu, para dar chuva à tua terra no tempo certo. - Deuteronômio 28:12",
 
-            "Aquele que anda com os sábios será sábio, mas o companheiro dos tolos sofre aflição. – Provérbios 13:20",
+            "Aquele que anda com os sábios será sábio, mas o companheiro dos tolos sofre aflição. - Provérbios 13:20",
 
-            "O Senhor sustém a todos os que caem e levanta a todos os abatidos. – Salmos 145:14",
+            "O Senhor sustém a todos os que caem e levanta a todos os abatidos. - Salmos 145:14",
 
-            "Cantarei ao Senhor enquanto eu viver; cantarei louvores ao meu Deus enquanto eu existir. – Salmos 104:33",
+            "Cantarei ao Senhor enquanto eu viver; cantarei louvores ao meu Deus enquanto eu existir. - Salmos 104:33",
 
-            "O Senhor te guardará na entrada e na saída, desde agora e para sempre. – Salmos 121:8",
+            "O Senhor te guardará na entrada e na saída, desde agora e para sempre. - Salmos 121:8",
 
-            "Confia no Senhor e faze o bem; habitarás na terra e verdadeiramente serás alimentado. – Salmos 37:3",
+            "Confia no Senhor e faze o bem; habitarás na terra e verdadeiramente serás alimentado. - Salmos 37:3",
 
-            "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei. – Mateus 11:28",
+            "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei. - Mateus 11:28",
 
-            "Aquele que habita no esconderijo do Altíssimo descansará à sombra do Onipotente. – Salmos 91:1",
+            "Aquele que habita no esconderijo do Altíssimo descansará à sombra do Onipotente. - Salmos 91:1",
 
-            "Ao anoitecer pode vir o choro, mas a alegria vem pela manhã. – Salmos 30:5",
+            "Ao anoitecer pode vir o choro, mas a alegria vem pela manhã. - Salmos 30:5",
 
-            "O Senhor é minha rocha, minha fortaleza e meu libertador. – Salmos 18:2",
+            "O Senhor é minha rocha, minha fortaleza e meu libertador. - Salmos 18:2",
 
-            "Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia. – Salmos 46:1",
+            "Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia. - Salmos 46:1",
 
-            "Deleita-te também no Senhor, e ele te concederá o que deseja o teu coração. – Salmos 37:4",
+            "Deleita-te também no Senhor, e ele te concederá o que deseja o teu coração. - Salmos 37:4",
 
-            "Não se aparte da tua boca o livro desta lei; medita nele dia e noite. – Josué 1:8",
+            "Não se aparte da tua boca o livro desta lei; medita nele dia e noite. - Josué 1:8",
 
-            "Ensina-nos a contar os nossos dias de tal maneira que alcancemos corações sábios. – Salmos 90:12",
+            "Ensina-nos a contar os nossos dias de tal maneira que alcancemos corações sábios. - Salmos 90:12",
 
-            "O coração do homem pode fazer planos, mas a resposta certa vem do Senhor. – Provérbios 16:1",
+            "O coração do homem pode fazer planos, mas a resposta certa vem do Senhor. - Provérbios 16:1",
 
-            "Deus é o que me cinge de força e aperfeiçoa o meu caminho. – Salmos 18:32",
+            "Deus é o que me cinge de força e aperfeiçoa o meu caminho. - Salmos 18:32",
 
-            "Esforça-te, e ele fortalecerá o teu coração, vós todos que esperais no Senhor. – Salmos 31:24",
+            "Esforça-te, e ele fortalecerá o teu coração, vós todos que esperais no Senhor. - Salmos 31:24",
 
-            "Os passos de um homem bom são confirmados pelo Senhor. – Salmos 37:23",
+            "Os passos de um homem bom são confirmados pelo Senhor. - Salmos 37:23",
 
-            "A tua palavra escondi no meu coração, para não pecar contra ti. – Salmos 119:11",
+            "A tua palavra escondi no meu coração, para não pecar contra ti. - Salmos 119:11",
 
-            "Sede, pois, imitadores de Deus, como filhos amados. – Efésios 5:1",
+            "Sede, pois, imitadores de Deus, como filhos amados. - Efésios 5:1",
 
-            "Melhor é o pouco com justiça, do que grandes rendimentos sem direito. – Provérbios 16:8",
+            "Melhor é o pouco com justiça, do que grandes rendimentos sem direito. - Provérbios 16:8",
 
-            "O Senhor é bom, uma fortaleza no dia da angústia, e conhece os que confiam nele. – Naum 1:7",
+            "O Senhor é bom, uma fortaleza no dia da angústia, e conhece os que confiam nele. - Naum 1:7",
 
-            "Aquietai-vos e sabei que eu sou Deus. – Salmos 46:10",
+            "Aquietai-vos e sabei que eu sou Deus. - Salmos 46:10",
 
-            "Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar. – 1 João 1:9",
+            "Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar. - 1 João 1:9",
 
-            "A glória deste último templo será maior do que a do primeiro, diz o Senhor. – Ageu 2:9",
+            "A glória deste último templo será maior do que a do primeiro, diz o Senhor. - Ageu 2:9",
 
-            "Pois ele satisfaz a alma sedenta, e enche de bens a alma faminta. – Salmos 107:9",
+            "Pois ele satisfaz a alma sedenta, e enche de bens a alma faminta. - Salmos 107:9",
 
-            "O amor não faz mal ao próximo. De sorte que o cumprimento da lei é o amor. – Romanos 13:10",
+            "O amor não faz mal ao próximo. De sorte que o cumprimento da lei é o amor. - Romanos 13:10",
 
-            "Não te deixes vencer do mal, mas vence o mal com o bem. – Romanos 12:21",
+            "Não te deixes vencer do mal, mas vence o mal com o bem. - Romanos 12:21",
 
-            "Quem não ama não conhece a Deus, porque Deus é amor. – 1 João 4:8",
+            "Quem não ama não conhece a Deus, porque Deus é amor. - 1 João 4:8",
 
-            "O Senhor é reto, ele é a minha rocha, e nele não há injustiça. – Salmos 92:15",
+            "O Senhor é reto, ele é a minha rocha, e nele não há injustiça. - Salmos 92:15",
 
-            "Com o Senhor há misericórdia, e com ele há abundante redenção. – Salmos 130:7",
+            "Com o Senhor há misericórdia, e com ele há abundante redenção. - Salmos 130:7",
 
-            "Lança o teu cuidado sobre o Senhor, e ele te susterá. – Salmos 55:22",
+            "Lança o teu cuidado sobre o Senhor, e ele te susterá. - Salmos 55:22",
 
-            "Guia-me pela vereda da justiça por amor do seu nome. – Salmos 23:3",
+            "Guia-me pela vereda da justiça por amor do seu nome. - Salmos 23:3",
 
-            "Semeai com justiça, colhei segundo a misericórdia. – Oséias 10:12",
+            "Semeai com justiça, colhei segundo a misericórdia. - Oséias 10:12",
 
-            "O Senhor é bom para todos, e as suas misericórdias estão sobre todas as suas obras. – Salmos 145:9",
+            "O Senhor é bom para todos, e as suas misericórdias estão sobre todas as suas obras. - Salmos 145:9",
 
-            "Pois os olhos do Senhor estão sobre os justos, e os seus ouvidos atentos às suas orações. – 1 Pedro 3:12",
+            "Pois os olhos do Senhor estão sobre os justos, e os seus ouvidos atentos às suas orações. - 1 Pedro 3:12",
 
-            "A tua palavra é lâmpada para os meus pés e luz para o meu caminho. – Salmos 119:105",
+            "A tua palavra é lâmpada para os meus pés e luz para o meu caminho. - Salmos 119:105",
 
-            "Com Deus faremos proezas; porque ele é que pisará os nossos inimigos. – Salmos 60:12",
+            "Com Deus faremos proezas; porque ele é que pisará os nossos inimigos. - Salmos 60:12",
 
-            "Os que semeiam em lágrimas segarão com alegria. – Salmos 126:5",
+            "Os que semeiam em lágrimas chegarão com alegria. - Salmos 126:5",
 
-            "Aquele que em vós começou a boa obra a aperfeiçoará até ao dia de Jesus Cristo. – Filipenses 1:6",
+            "Aquele que em vós começou a boa obra a aperfeiçoará até ao dia de Jesus Cristo. - Filipenses 1:6",
 
-            "Porque o Senhor repreende aquele que ama, assim como o pai ao filho a quem quer bem. – Provérbios 3:12",
+            "Porque o Senhor repreende aquele que ama, assim como o pai ao filho a quem quer bem. - Provérbios 3:12",
 
-            "Antes, crescei na graça e conhecimento de nosso Senhor e Salvador Jesus Cristo. – 2 Pedro 3:18",
+            "Antes, crescei na graça e conhecimento de nosso Senhor e Salvador Jesus Cristo. - 2 Pedro 3:18",
 
-            "No amor não há medo; antes o perfeito amor lança fora o medo. – 1 João 4:18",
+            "No amor não há medo; antes o perfeito amor lança fora o medo. - 1 João 4:18",
 
-            "Fiel é o que vos chama, o qual também o fará. – 1 Tessalonicenses 5:24",
+            "Fiel é o que vos chama, o qual também o fará. - 1 Tessalonicenses 5:24",
 
-            "Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus. – Isaías 41:10",
+            "Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus. - Isaías 41:10",
 
-            "Não se cansem de fazer o bem, pois no tempo certo colherão, se não desanimarem. – Gálatas 6:9",
+            "Não se cansem de fazer o bem, pois no tempo certo colherão, se não desanimarem. - Gálatas 6:9",
 
-            "Os céus declaram a glória de Deus e o firmamento anuncia a obra das suas mãos. – Salmos 19:1",
+            "Os céus declaram a glória de Deus e o firmamento anuncia a obra das suas mãos. - Salmos 19:1",
 
-            "Pois tu, Senhor, és o meu refúgio. Fizeste do Altíssimo a tua morada. – Salmos 91:9",
+            "Pois tu, Senhor, és o meu refúgio. Fizeste do Altíssimo a tua morada. - Salmos 91:9",
 
-            "Que a paz de Deus, que excede todo entendimento, guarde os vossos corações. – Filipenses 4:7",
+            "Que a paz de Deus, que excede todo entendimento, guarde os vossos corações. - Filipenses 4:7",
 
-            "O Senhor é a minha luz e a minha salvação; a quem temerei? – Salmos 27:1",
+            "O Senhor é a minha luz e a minha salvação; a quem temerei? - Salmos 27:1",
 
-            "Tu conservarás em paz aquele cuja mente está firme em ti. – Isaías 26:3",
+            "Tu conservarás em paz aquele cuja mente está firme em ti. - Isaías 26:3",
 
-            "Oh! quão grande é a tua bondade, que guardaste para os que te temem. – Salmos 31:19",
+            "Oh! quão grande é a tua bondade, que guardaste para os que te temem. - Salmos 31:19",
 
-            "A minha graça te basta, porque o meu poder se aperfeiçoa na fraqueza. – 2 Coríntios 12:9",
+            "A minha graça te basta, porque o meu poder se aperfeiçoa na fraqueza. - 2 Coríntios 12:9",
 
-            "Feliz é aquele que tem o Deus de Jacó por seu auxílio. – Salmos 146:5",
+            "Feliz é aquele que tem o Deus de Jacó por seu auxílio. - Salmos 146:5",
 
-            "Se andarmos na luz, como ele na luz está, temos comunhão uns com os outros. – 1 João 1:7",
+            "Se andarmos na luz, como ele na luz está, temos comunhão uns com os outros. - 1 João 1:7",
 
-            "Ensina-me, Senhor, o teu caminho, e andarei na tua verdade. – Salmos 86:11",
+            "Ensina-me, Senhor, o teu caminho, e andarei na tua verdade. - Salmos 86:11",
 
-            "Aquele que ouve a minha palavra e crê naquele que me enviou tem a vida eterna. – João 5:24",
+            "Aquele que ouve a minha palavra e crê naquele que me enviou tem a vida eterna. - João 5:24",
 
-            "Grandes são as obras do Senhor, procuradas por todos os que nelas tomam prazer. – Salmos 111:2",
+            "Grandes são as obras do Senhor, procuradas por todos os que nelas tomam prazer. - Salmos 111:2",
 
-            "Assim resplandeça a vossa luz diante dos homens. – Mateus 5:16",
+            "Assim resplandeça a vossa luz diante dos homens. - Mateus 5:16",
 
-            "O Senhor é bom, é fortaleza no dia da angústia. – Naum 1:7",
+            "O Senhor é bom, é fortaleza no dia da angústia. - Naum 1:7",
 
-            "Perto está o Senhor dos que têm o coração quebrantado. – Salmos 34:18",
+            "Perto está o Senhor dos que têm o coração quebrantado. - Salmos 34:18",
 
-            "Mas graças a Deus, que nos dá a vitória por nosso Senhor Jesus Cristo. – 1 Coríntios 15:57",
+            "Mas graças a Deus, que nos dá a vitória por nosso Senhor Jesus Cristo. - 1 Coríntios 15:57",
 
-            "Cantai ao Senhor um cântico novo, porque ele tem feito maravilhas. – Salmos 98:1",
+            "Cantai ao Senhor um cântico novo, porque ele tem feito maravilhas. - Salmos 98:1",
 
-            "Os que esperam no Senhor renovarão as suas forças. – Isaías 40:31",
+            "Os que esperam no Senhor renovarão as suas forças. - Isaías 40:31",
 
-            "Alegrai-vos sempre no Senhor; outra vez digo, alegrai-vos. – Filipenses 4:4",
+            "Alegrai-vos sempre no Senhor; outra vez digo, alegrai-vos. - Filipenses 4:4",
 
-            "O Senhor está comigo; não temerei o que me pode fazer o homem. – Salmos 118:6",
+            "O Senhor está comigo; não temerei o que me pode fazer o homem. - Salmos 118:6",
 
-            "Porque o Senhor é bom; a sua benignidade dura para sempre. – Salmos 100:5",
+            "Porque o Senhor é bom; a sua benignidade dura para sempre. - Salmos 100:5",
 
-            "Busquei ao Senhor, e ele me respondeu; livrou-me de todos os meus temores. – Salmos 34:4",
+            "Busquei ao Senhor, e ele me respondeu; livrou-me de todos os meus temores. - Salmos 34:4",
 
-            "Ele cura os quebrantados de coração, e liga-lhes as feridas. – Salmos 147:3",
+            "Ele cura os quebrantados de coração, e liga-lhes as feridas. - Salmos 147:3",
 
-            "Não vos conformeis com este mundo, mas transformai-vos pela renovação da vossa mente. – Romanos 12:2",
+            "Não vos conformeis com este mundo, mas transformai-vos pela renovação da vossa mente. - Romanos 12:2",
 
-            "Tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor. – Colossenses 3:23",
+            "Tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor. - Colossenses 3:23",
 
-            "O Senhor é bom, é fortaleza no dia da angústia. – Naum 1:7",
+            "O Senhor é bom, é fortaleza no dia da angústia. - Naum 1:7",
 
-            "Cantai louvores ao Senhor, que habita em Sião; anunciai entre os povos os seus feitos. – Salmos 9:11",
+            "Cantai louvores ao Senhor, que habita em Sião; anunciai entre os povos os seus feitos. - Salmos 9:11",
 
-            "Exaltai ao Senhor nosso Deus e adorai-o no seu monte santo. – Salmos 99:9",
+            "Exaltai ao Senhor nosso Deus e adorai-o no seu monte santo. - Salmos 99:9",
 
-            "Em paz me deito e logo pego no sono, porque só tu, Senhor, me fazes repousar seguro. – Salmos 4:8",
+            "Em paz me deito e logo pego no sono, porque só tu, Senhor, me fazes repousar seguro. - Salmos 4:8",
 
-            "Que diremos, pois, a estas coisas? Se Deus é por nós, quem será contra nós? – Romanos 8:31",
+            "Que diremos, pois, a estas coisas? Se Deus é por nós, quem será contra nós? - Romanos 8:31",
 
-            "Vigiai, estai firmes na fé; portai-vos varonilmente, e fortalecei-vos. – 1 Coríntios 16:13",
+            "Vigiai, estai firmes na fé; portai-vos varonilmente, e fortalecei-vos. - 1 Coríntios 16:13",
 
-            "Por que estás abatida, ó minha alma, e por que te perturbas dentro de mim? Espera em Deus. – Salmos 42:5",
+            "Por que estás abatida, ó minha alma, e por que te perturbas dentro de mim? Espera em Deus. - Salmos 42:5",
 
-            "E tudo quanto pedirdes em oração, crendo, recebereis. – Mateus 21:22",
+            "E tudo quanto pedirdes em oração, crendo, recebereis. - Mateus 21:22",
 
-            "No princípio criou Deus os céus e a terra. – Gênesis 1:1",
+            "No princípio criou Deus os céus e a terra. - Gênesis 1:1",
 
-            "Guardai-vos em amor de Deus, esperando a misericórdia de nosso Senhor Jesus Cristo. – Judas 1:21",
+            "Guardai-vos em amor de Deus, esperando a misericórdia de nosso Senhor Jesus Cristo. - Judas 1:21",
 
-            "A graça do Senhor Jesus Cristo, e o amor de Deus, e a comunhão do Espírito Santo sejam com todos vós. – 2 Coríntios 13:13",
+            "A graça do Senhor Jesus Cristo, e o amor de Deus, e a comunhão do Espírito Santo sejam com todos vós. - 2 Coríntios 13:13",
 
-            "Se o Senhor não edificar a casa, em vão trabalham os que a edificam. – Salmos 127:1",
+            "Se o Senhor não edificar a casa, em vão trabalham os que a edificam. - Salmos 127:1",
 
-            "Faz-me ouvir pela manhã da tua benignidade, pois em ti confio. – Salmos 143:8",
+            "Faz-me ouvir pela manhã da tua benignidade, pois em ti confio. - Salmos 143:8",
 
-            "Regozijai-vos sempre. Orai sem cessar. – 1 Tessalonicenses 5:16-17",
+            "Regozijai-vos sempre. Orai sem cessar. - 1 Tessalonicenses 5:16-17",
 
-            "Chegai-vos a Deus, e ele se chegará a vós. – Tiago 4:8",
+            "Chegai-vos a Deus, e ele se chegará a vós. - Tiago 4:8",
 
-            "Mas buscai primeiro o Reino de Deus, e a sua justiça. – Mateus 6:33",
+            "Mas buscai primeiro o Reino de Deus, e a sua justiça. - Mateus 6:33",
 
-            "Louvai ao Senhor, porque ele é bom. – Salmos 136:1",
+            "Louvai ao Senhor, porque ele é bom. - Salmos 136:1",
 
-            "Examinai tudo. Retende o bem. – 1 Tessalonicenses 5:21",
+            "Examinai tudo. Retende o bem. - 1 Tessalonicenses 5:21",
 
-            "O Senhor guardará a tua entrada e a tua saída, desde agora e para sempre. – Salmos 121:8",
+            "O Senhor guardará a tua entrada e a tua saída, desde agora e para sempre. - Salmos 121:8",
 
 
         ];
